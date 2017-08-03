@@ -16,7 +16,11 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('rss-list', require('./components/rss-list.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        rssUrl: '/api/rss',
+    }
 });
