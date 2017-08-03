@@ -21,12 +21,12 @@
                 @foreach ($feeds as $feed)
                     <div class="chat-element">
                         <div class="media-body ">
-                            <small class="pull-right text-navy">{{ $feed->get_get_gmdate() }}</small>
+                            <small class="pull-right text-navy">{{ $feed->get_gmdate() }}</small>
                             <strong><a href="{{ $feed->get_link() }}">{{ $feed->get_title() }}</a></strong>
                             <p class="m-b-xs">
                                 {!! $feed->get_content() !!}
                             </p>
-                            <small class="text-muted">{{ $feed->get_get_gmdate() }}</small>
+                            <small class="text-muted">{{ $feed->get_gmdate() }}</small>
                         </div>
                     </div>
                 @endforeach
