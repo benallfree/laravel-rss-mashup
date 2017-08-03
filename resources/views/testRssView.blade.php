@@ -1,62 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <title>Top 10 RSS feeds</title>
 
-    <meta charset="utf-8"/>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <style type="text/css">
-        body {
-            background-color: #f0f0f2;
-            margin: 0;
-            padding: 0;
-            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        }
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
-        div {
-            width: 600px;
-            margin: 5em auto;
-            padding: 50px;
-            background-color: #fff;
-            border-radius: 1em;
-        }
-
-        a:link, a:visited {
-            color: #38488f;
-            text-decoration: none;
-        }
-
-        @media (max-width: 700px) {
-            body {
-                background-color: #fff;
-            }
-
-            div {
-                width: auto;
-                margin: 0 auto;
-                border-radius: 0;
-                padding: 1em;
-            }
-        }
-    </style>
 </head>
-
 <body>
-<div>
-    @foreach ($feeds as $feed)
-        <li>
-            <span>
-                <a href="{{ $feed->get_link() }}">{{ $feed->get_title() }}</a>
-            </span>
-            <div class="content">
-                <p>
-                    {!! $feed->get_content() !!}
-                </p>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div>
+            <div class="chat-activity-list">
+                @foreach ($feeds as $feed)
+                    <div class="chat-element">
+                        <div class="media-body ">
+                            <small class="pull-right text-navy">{{ $feed->get_get_gmdate() }}</small>
+                            <strong><a href="{{ $feed->get_link() }}">{{ $feed->get_title() }}</a></strong>
+                            <p class="m-b-xs">
+                                {!! $feed->get_content() !!}
+                            </p>
+                            <small class="text-muted">{{ $feed->get_get_gmdate() }}</small>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        </li>
-    @endforeach
+        </div>
+    </div>
 </div>
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 </body>
 </html>
