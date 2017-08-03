@@ -12,6 +12,36 @@ class TestRSSController extends Controller
     //
     public function index(Request $request)
     {
+
+        // Display only 10 last feeds
+        return view('testRssView')
+            ->with('feeds', $this->getList());
+    }
+
+    public function getVueView(Request $request)
+    {
+        return view('testRssViewVue');
+    }
+
+    public function apiGetList(Request $request)
+    {
+        $rss_data = $this->getList();
+        $rss_json = [];
+
+        foreach($rss_data as $rss_datum){
+            $rss_json[] = [
+                'time' => $rss_datum->get_gmdate(),
+                'title' => $rss_datum->get_title(),
+                'url' => $rss_datum->get_link(),
+                'content' => $rss_datum->get_content(),
+            ];
+        }
+
+        return response()->json($rss_json);
+    }
+
+    public function getList()
+    {
         // Get list of feed providers
         $config_file = base_path() . '/rsslist.yml';
         $feed_providers = Yaml::parse(file_get_contents($config_file));
@@ -40,8 +70,6 @@ class TestRSSController extends Controller
             }
         }
 
-        // Display only 10 last feeds
-        return view('testRssView')
-            ->with('feeds', array_slice($total_feeds, 0, 10));
+        return array_slice($total_feeds, 0, 10);
     }
 }

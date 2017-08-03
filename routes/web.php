@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/rss', 'TestRSSController@index');
+
+Route::get('/rss-vue', 'TestRSSController@getVueView');
